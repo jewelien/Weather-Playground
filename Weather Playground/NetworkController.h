@@ -11,6 +11,6 @@
 
 @interface NetworkController : NSObject
 
-+ (NetworkController *)sharedInstance;
++ (AFHTTPSessionManager *)api;
 
 @end

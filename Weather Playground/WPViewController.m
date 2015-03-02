@@ -9,6 +9,11 @@
 #import "WPViewController.h"
 
 @interface WPViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *searchField;
+
+@property (weak, nonatomic) IBOutlet UILabel *locationName;
+
+
 
 @end
 
@@ -19,6 +24,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
+- (IBAction)search:(id)sender {
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

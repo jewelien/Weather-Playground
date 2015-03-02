@@ -11,13 +11,13 @@
 
 @implementation NetworkController
 
-+ (AFHTTPSessionManager *)sharedInstance {
-    static AFHTTPSessionManager *sharedInstance = nil;
++ (AFHTTPSessionManager *)api {
+    static AFHTTPSessionManager *api = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: @"http://api.openweathermap.org/data/2.5/"]];
-        sharedInstance.responseSerializer = [AFJSONResponseSerializer serializer];
+        api = [[AFHTTPSessionManager alloc] initWithBaseURL: [NSURL URLWithString: @"http://api.openweathermap.org/data/2.5/"]];
+        api.responseSerializer = [AFJSONResponseSerializer serializer];
     });
-    return sharedInstance;
+    return api;
 }
 @end
