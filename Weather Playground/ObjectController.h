@@ -15,5 +15,5 @@
 + (ObjectController *)sharedInstance;
 
 - (void)getWeatherWithName:(NSString *)name completion:(void (^) (Weather *weather))completion;
-
+- (NSString *)kelvinToFar:(NSString *)kelvinNumber;
 @end

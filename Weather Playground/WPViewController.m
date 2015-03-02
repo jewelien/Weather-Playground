@@ -7,13 +7,19 @@
 //
 
 #import "WPViewController.h"
+#import "ObjectController.h"
+#import "Weather.h"
 
-@interface WPViewController ()
+@interface WPViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *searchField;
 
 @property (weak, nonatomic) IBOutlet UILabel *locationName;
+@property (weak, nonatomic) IBOutlet UILabel *tempLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *weatherMainLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
-
+@property (strong, nonatomic) Weather *weather;
 
 @end
 
@@ -26,10 +32,21 @@
 }
 
 - (IBAction)search:(id)sender {
+    NSString *name = [self.searchField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [[ObjectController sharedInstance] getWeatherWithName:name completion:^(Weather *weather) {
+        self.locationName.text =self.weather.locationName;
+        self.tempLabel.text = self.weather.weatherTemp;
+        self.weatherMainLabel.text = self.weather.weatherMain;
+        self.descriptionLabel.text = self.weather.weatherDescription;
+        self.tempLabel.text = [[ObjectController sharedInstance] kelvinToFar:self.weather.weatherTemp];
+    }];
 }
 
 
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning
 {

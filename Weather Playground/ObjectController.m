@@ -36,5 +36,11 @@
     
 }
 
+-(NSString *)kelvinToFar:(NSString *) kelvinNumber {
+    float number = [kelvinNumber floatValue];
+    float value = (number - 273.15)* 1.8000 + 32.00;
+    return [NSString stringWithFormat:@"%f", value];
+}
+
 
 @end
