@@ -8,7 +8,7 @@
 
 #import "ObjectController.h"
 #import "NetworkController.h"
-#import <AFNetworking/AFHTTPRequestOperation.h>
+//#import <AFNetworking/AFHTTPRequestOperation.h>
 
 @implementation ObjectController
 + (ObjectController *)sharedInstance {
@@ -25,13 +25,14 @@
     NSString *path = [NSString stringWithFormat:@"weather?q=%@", name];
     
     [[NetworkController api] GET:path parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSArray *responseWeather = responseObject;
+        NSDictionary *responseWeather = responseObject;
         
-        NSMutableArray *weather = [NSMutableArray new];
-        for (NSDictionary *dictionary in responseWeather) {
-            [weather addObject:[Weather alloc]initWithDictionary:dictionary]];
-        }
-    }
+        Weather *weather = [[Weather alloc]initWithDictionary:responseWeather];
+        completion(weather);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(nil);
+    } ];
     
 }
 

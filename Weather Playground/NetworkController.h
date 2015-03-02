@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class AFHTTPSessionManager;
+#import <AFNetworking/AFNetworking.h>
 
 @interface NetworkController : NSObject
 
