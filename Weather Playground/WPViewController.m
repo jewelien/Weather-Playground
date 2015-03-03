@@ -31,7 +31,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction)editingDidEnd:(id)sender {
+    [self search:sender];
+}
+
 - (IBAction)search:(id)sender {
+    
     NSString *name = [self.searchField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[ObjectController sharedInstance] getWeatherWithName:name completion:^(Weather *weather) {
         
@@ -42,13 +47,19 @@
         
         self.iconImageView.image = weather.weatherIcon;
     }];
+    
 }
+- (IBAction)editingDidBegin:(id)sender {
+    self.searchField.clearButtonMode = YES;
+}
+
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
