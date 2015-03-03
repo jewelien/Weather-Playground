@@ -34,11 +34,13 @@
 - (IBAction)search:(id)sender {
     NSString *name = [self.searchField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[ObjectController sharedInstance] getWeatherWithName:name completion:^(Weather *weather) {
-        self.locationName.text =self.weather.locationName;
-        self.tempLabel.text = self.weather.weatherTemp;
-        self.weatherMainLabel.text = self.weather.weatherMain;
-        self.descriptionLabel.text = self.weather.weatherDescription;
-        self.tempLabel.text = [[ObjectController sharedInstance] kelvinToFar:self.weather.weatherTemp];
+        
+        self.locationName.text = weather.locationName;
+        self.weatherMainLabel.text = weather.weatherMain;
+        self.descriptionLabel.text = weather.weatherDescription;
+        self.tempLabel.text = [[ObjectController sharedInstance] kelvinToFar:weather.weatherTemp];
+        
+        self.iconImageView.image = weather.weatherIcon;
     }];
 }
 

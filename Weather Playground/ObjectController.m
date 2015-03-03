@@ -37,9 +37,9 @@
 }
 
 -(NSString *)kelvinToFar:(NSString *) kelvinNumber {
-    float number = [kelvinNumber floatValue];
-    float value = (number - 273.15)* 1.8000 + 32.00;
-    return [NSString stringWithFormat:@"%f", value];
+    NSInteger number = [kelvinNumber integerValue];
+    int value = (number - 273.15)* 1.8000 + 32.00;
+    return [NSString stringWithFormat:@"%d°F", value]; //degree symbol shift option 8
 }
 
 
